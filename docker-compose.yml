@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  PULSE:
+    image: vgpastor/PULSE
+    container_name: PULSE
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/root/PULSE
+    ports:
+      - 22:22
