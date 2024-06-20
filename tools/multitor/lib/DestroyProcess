@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# shellcheck shell=bash
+
+# ``````````````````````````````````````````````````````````````````````````````
+# Function name: DestroyProcess()
+#
+# Description:
+#   It destroys currently running tor process.
+#
+# Usage:
+#   DestroyProcess "id"
+#
+# Examples:
+#   DestroyProcess ${_tpr}"
+#
+
+function DestroyProcess() {
+
+  local _FUNCTION_ID="DestroyProcess"
+  local _STATE=0
+
+  local _arg_tproc="$1"
+
+  # shellcheck disable=SC2154
+  kill -9 "$_arg_tproc" >>"$_log_stdout" 2>&1 ; _kstate="$?"
+
+  if [[ $_kstate -eq 0 ]] ; then
+
+    _logger "info" \
+      "${_FUNCTION_ID}()" \
+      "killed tor process: '${_arg_tproc}'"
+
+  else
+
+    _logger "warn" \
+      "${_FUNCTION_ID}()" \
+      "not killed tor process (maybe not found?)"
+
+  fi
+
+  return $_STATE
+
+}
