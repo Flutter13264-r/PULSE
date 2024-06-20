@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+# shellcheck shell=bash
+
+# ``````````````````````````````````````````````````````````````````````````````
+# Function name: CreateProxyProcess()
+#
+# Description:
+#   It creates tor load balancer with haproxy.
+#
+# Usage:
+#   CreateProxyProcess
+#
+# Examples:
+#   CreateProxyProcess
+#
+
+function CreateProxyProcess() {
+
+  # shellcheck disable=SC2034
+  local _FUNCTION_ID="CreateProxyProcess"
+  local _STATE=0
+
+  # Port number from HAProxy config file.
+  local _bk_port_tmp="16379"
+  local _bk_port_new=0
+
+  # shellcheck disable=SC2154
+  for _bk_port in "${_proxy_ports[@]}" ; do
+
+    if [[ "$proxy_state" -eq 1 ]] && \
+       [[ ! "$frontend_type" == "haproxy" ]] ; then
+
+      # shellcheck disable=SC2034
+      _bk_port_new="$_bk_port"
+
+      # shellcheck disable=SC2154
+      printf "  server            socks-process-%d 127.0.0.1:%d check fall 3 rise 2\\n" "$_bk_port" "$_bk_port_new" \
+      >>"${_tml_ha1}"
+
+      _logger "info" \
+        "${_FUNCTION_ID}()" \
+        "added backend port (haproxy): '$_bk_port'"
+
+    else
+
+      # shellcheck disable=SC2034
+      _bk_port_new=$((_bk_port_tmp - 1000))
+
+      # shellcheck disable=SC2154
+      printf "  server            %s-process-%d 127.0.0.1:%d check fall 3 rise 2\\n" "$proxy_type" "$_bk_port_new" "$_bk_port_new" \
+      >>"${_tml_ha1}"
+
+      _logger "info" \
+        "${_FUNCTION_ID}()" \
+        "added backend port (haproxy): '$_bk_port_new'"
+
+      CreateWebProxyProcess
+
+      _bk_port_tmp=$((_bk_port_tmp + 1))
+
+    fi
+
+  done
+
+  if [[ ! "$frontend_type" == "haproxy" ]] ; then
+
+    # Port number from HAProxy config file.
+    # shellcheck disable=SC2034
+    _bk_port="16379"
+    _bk_port_new=$((_bk_port - 1000))
+
+    CreateWebProxyProcess
+
+  fi
+
+  # shellcheck disable=SC2154
+  # Init HAProxy process.
+  haproxy -f "${_tml_ha1}" && \
+  _logger "info" \
+    "${_FUNCTION_ID}()" \
+    "init proxy process with '${_tml_ha1}' config file"
+
+  return $_STATE
+
+}
