@@ -1,0 +1,51 @@
+.\" Manpage for multitor.
+.\" Contact trimstray@gmail.com.
+.TH man 8 "21.01.2018" "1.3.0" "multitor man page"
+.SH NAME
+multitor \- create multiple TOR instances
+.SH SYNOPSIS
+multitor <option|long-option>
+.SH DESCRIPTION
+It's provides one single endpoint for clients. In addition, you can view previously running TOR processes and create a new identity for all or selected processes.
+.SH OPTIONS
+--help
+        show this message
+
+--debug
+        displays information on the screen (debug mode)
+
+--verbose
+        displays more information about TOR processes
+
+-i, --init <num>
+        init new tor processes
+
+-k, --kill
+        kill all multitor processes
+
+-s, --show-id
+        show specific tor process id
+
+-n, --new-id
+        regenerate tor circuit
+
+-u, --user <string>
+        set the user (only with -i|--init)
+
+--socks-port <port_num|all>
+        set socks port number
+
+--control-port <port_num>
+        set control port number
+
+--proxy <proxy_type>
+        set socks or http (polipo, privoxy, hpts) proxy server
+
+--haproxy
+        set HAProxy as a frontend for http proxies (only with --proxy)
+.SH SEE ALSO
+https://github.com/trimstray/multitor
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+trimstray (trimstray@gmail.com)
